@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('admin', function (Blueprint $table) {
-            $table->dropColumn('admin_level');
+        Schema::create('admin', function (Blueprint $table) {
+            $table->id();
+            $table->string('username',100)->required();
+            $table->string('password',100)->required();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('admin', function (Blueprint $table) {
-            $table->integer('admin_level')->nullable();
-        });
+        Schema::dropIfExists('admin');
     }
 };
